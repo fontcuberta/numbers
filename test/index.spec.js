@@ -26,8 +26,18 @@ describe('application', function() {
     it ('could the input contain a number', function(){
       document.getElementById('randNumberInput').value = 44;
       expect(parseInt(getInputNumber())).toEqual(jasmine.any(Number));
+    });
+  });
 
-
+  describe('compare a number', function(){
+    it('compare smaller', function(){
+     window.getRandom = function() {
+       return 80;
+     }
+     document.getElementById('randNumberInput').value = 82;
+     console.log = jasmine.createSpy();
+     compareNumbers();
+     expect(console.log).toHaveBeenCalledWith("The random is smaller");
     });
   });
 
