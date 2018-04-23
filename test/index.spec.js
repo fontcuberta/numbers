@@ -19,7 +19,16 @@ describe('application', function () {
       expect(getRandom()).toBeLessThanOrEqual(100);
     });
   });
-  describe('if an input contains a number', function () {
+  xdescribe('compare numbers', function () {
 
   });
+  describe('check input', function () {
+    it('could the input contain a number', function () {
+      document.getElementById('randNumberInput').value = 44;
+      expect(parseInt(getInputNumber())).toEqual(jasmine.any(Number));
+
+
+    });
+  });
+
 });
