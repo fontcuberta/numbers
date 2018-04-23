@@ -1,8 +1,8 @@
 
-function compareNumbers () {
+function compareNumbers() {
   'use strict'
-  const randNumber  = getRandom();
-  const inputNumber = getInputNumber();
+  const randNumber = getRandom();
+  const inputNumber = parseInt(getInputNumber());
   console.log(randNumber);
   console.log(inputNumber);
   if (randNumber > inputNumber) {
@@ -17,27 +17,27 @@ function compareNumbers () {
   return;
 }
 
-function getRandom (event) {
+function getRandom(event) {
   return (Math.floor(Math.random() * (100 - 1)) + 1);
 }
 
-function getInputNumber () {
+function getInputNumber() {
   return document.getElementById('randNumberInput').value;
 }
 
-function bigger () {
-  console.log ("The random is bigger");
+function bigger() {
+  console.log("The random is bigger");
 }
 
-function smaller () {
-  console.log ("The random is smaller");
+function smaller() {
+  console.log("The random is smaller");
 }
 
-function win () {
+function win() {
   console.log("YOU WIN!!!");
 }
 
-function start () {
+function start() {
   var buttons = document.getElementsByClassName("button");
   buttons[0].addEventListener("click", compareNumbers);
 };
