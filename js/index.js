@@ -1,4 +1,3 @@
-'use strict'
 function compareNumbers () {
   const randNumber  = getRandom();
   const inputNumber = getInputNumber();
@@ -36,15 +35,13 @@ function win () {
   console.log("YOU WIN!!!");
 }
 
-window.onload = function () {
+function start() {
   var buttons = document.getElementsByClassName("button");
   buttons[0].addEventListener("click", compareNumbers);
-  
+}
 
-};
-
-(function (x) {
-  return function (y) {
-    return x
-  }
-})(1)(2);
+// (function (x) {
+//   return function (y) {
+//     return x
+//   }
+// })(1)(2);
