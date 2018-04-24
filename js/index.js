@@ -3,14 +3,20 @@ function compareNumbers () {
   const inputNumber = getInputNumber();
   console.log(randNumber);
   console.log(inputNumber);
-  if (randNumber > inputNumber) {
-    bigger();
+  if (inputNumber < 0 || inputNumber > 100 || inputNumber === '') {
+    error();
   }
   else if (randNumber < inputNumber) {
     smaller();
   }
-  else {
+  else if (randNumber === inputNumber){
     win();
+  }
+  else if (randNumber > inputNumber) {
+    bigger();
+  }
+  else {
+    error();
   }
   return;
 }
@@ -33,6 +39,10 @@ function smaller () {
 
 function win () {
   console.log("YOU WIN!!!");
+}
+
+function error () {
+  console.error('Error. Please, introduce a number between 1 and 100');  
 }
 
 function start() {
