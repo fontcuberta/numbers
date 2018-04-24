@@ -1,6 +1,7 @@
 
-function compareNumbers() {
-  'use strict'
+function compareNumbers(event) {
+  event.preventDefault();
+  'use strict';
   const randNumber = getRandom();
   const inputNumber = parseInt(getInputNumber());
   console.log(randNumber);

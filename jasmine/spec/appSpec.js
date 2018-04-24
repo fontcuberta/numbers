@@ -40,4 +40,5 @@ describe("App", function () {
             expect(console.log).toHaveBeenCalledWith("Text is not allowed. Try a number");
         });
     });
+
 });
