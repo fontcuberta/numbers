@@ -45,10 +45,16 @@ function win() {
 function start() {
   const randNumber = getRandom();
   var button = document.getElementById("compare-numbers-button");
-  button.addEventListener("click", function (event) {
-    event.preventDefault();
+  button.addEventListener("click", eventHandler(function () {
     compareNumbers(randNumber);
-  });
+  }));
+}
+
+function eventHandler(handler) {
+  return function (event) {
+    event.preventDefault();
+    handler();
+  };
 }
 
 
