@@ -1,18 +1,14 @@
-function compareNumbers () {
-  const randNumber  = getRandom();
+function compareNumbers (randNumber) {
   const inputNumber = getInputNumber();
-  console.log(randNumber);
-  console.log(inputNumber);
   if (randNumber > inputNumber) {
-    bigger();
+      setResult(bigger());
   }
   else if (randNumber < inputNumber) {
-    smaller();
+      setResult(smaller());
   }
   else {
-    win();
+      setResult(win());
   }
-  return;
 }
 
 function getRandom (event) {
@@ -20,28 +16,29 @@ function getRandom (event) {
 }
 
 function getInputNumber () {
-  return document.getElementById('randNumberInput').value;
+  return Number(document.getElementById('randNumberInput').value);
+}
+
+function setResult(result) {
+  document.getElementById('result').innerHTML = result;
 }
 
 function bigger () {
-  console.log ("The random is bigger");
+  return "The random is bigger";
 }
 
 function smaller () {
-  console.log ("The random is smaller");
+  return "The random is smaller";
 }
 
 function win () {
-  console.log("YOU WIN!!!");
+  return "YOU WIN!!!";
 }
 
 function start() {
-  var buttons = document.getElementsByClassName("button");
-  buttons[0].addEventListener("click", compareNumbers);
+  var randomNumber = getRandom();
+  var comparisonTrigger = document.getElementById("compare-numbers-button");
+  comparisonTrigger.addEventListener("click", function(){
+      compareNumbers(randomNumber);
+  });
 }
-
-// (function (x) {
-//   return function (y) {
-//     return x
-//   }
-// })(1)(2);
