@@ -19,6 +19,9 @@ describe('application', function() {
       expect(random).toBeGreaterThanOrEqual(1);
       expect(random).toBeLessThanOrEqual(100);
     });
+    
+  });
+  describe('compare numbers', function() {
     it('compares that the number introduced by the user is bigger than the random one', function () {
       document.getElementById('rand-number-input').value = 20;
       compareNumbers(40);
@@ -29,12 +32,20 @@ describe('application', function() {
       compareNumbers(40);
       expect(document.getElementById('result').innerHTML).toEqual(smaller());
     });
+    it('compares that the number introduced by the user is equal than the random one', function () {
+      document.getElementById('rand-number-input').value = 40;
+      compareNumbers(40);
+      expect(document.getElementById('result').innerHTML).toEqual(win());
+    });
   });
-  xdescribe('compare numbers', function() {
-    
-  });
-  xdescribe('check input', function() {
-    it ('could the input contain a number', function(){
+  describe('check input', function() {
+    it('check if the number introduced by the user is empty', function () {
+      document.getElementById('rand-number-input').value = 0;
+      compareNumbers(40);
+      expect(document.getElementById('result').innerHTML).toEqual(error());
+    });
+ 
+    xit ('could the input contain a number', function(){
       document.getElementById('rand-number-input').value = 44;
       expect(parseInt(getInputNumber())).toEqual(jasmine.any(Number));
     });
