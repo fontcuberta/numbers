@@ -25,7 +25,7 @@ function getRandom (event) {
 }
 
 function getInputNumber () {
-  return Number(document.getElementById('randNumberInput').value);
+  return Number(document.getElementById('rand-number-input').value);
 }
 function setResult (result) {
   document.getElementById('result').innerHTML = result;
