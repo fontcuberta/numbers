@@ -19,7 +19,7 @@ describe("App", function () {
             document.getElementById('randNumberInput').value = 50; //Quiero comprobar que la comparación funciona. Para ello me creo un número aleatorio constante con el que voy a comprobar cada caso.
         });
 
-        it("should render the number is bigger", function () {
+        ịt("should render the number is bigger", function () {
             compareNumbers(100); //le digo que el random number es 100, que es mayor que el input number
             expect(document.getElementById('result').innerHTML).toEqual("The random is bigger");
         });
@@ -33,6 +33,16 @@ describe("App", function () {
             compareNumbers(50); //le digo que el random number es 50, que es el input number
             expect(document.getElementById('result').innerHTML).toEqual("YOU WIN!!!");
         });
+    });
 
-    })
+    describe("compares a string with random number expecting error function", function () {
+        beforeEach(function () {
+            document.getElementById('randNumberInput').value = "hola"; //fuerzo que el contenido del input sea un string.
+        });
+
+        it("renders error when input is a string", function () {
+            compareNumbers(30);
+            expect(document.getElementById('result').innerHTML).toEqual("Text is not allowed. Try a number");
+        });
+    });
 });
