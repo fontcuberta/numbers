@@ -1,44 +1,38 @@
 describe("App", function () {
-    beforeEach(function () {
+
+    it("renders the result", function () {
         start();
+        expect(document.getElementById('result').innerHTML).toEqual("");           //primero compruebo que el div donde voy a pintar el resultado de la comparación esté vacío.
+
+        document.getElementById('randNumberInput').value = 20;                    //relleno el input artificialmente.
+        document.getElementById("compare-numbers-button").click();               //simulo el click.
+        expect(document.getElementById('result').innerHTML).not.toEqual("");    //compruebo que el div ya no esté vacío.
     });
 
-    describe("get random number", function () {
-        it("should be between 1 and 100", function () {
-            expect(getRandom()).toBeGreaterThanOrEqual(1);
-            expect(getRandom()).toBeLessThanOrEqual(100);
+    it("generates a random number between 1 and 100", function () {
+        expect(getRandom()).toBeGreaterThanOrEqual(1); //Espero que el número random que me genera la función getRandom sea mayor o igual que 1.
+        expect(getRandom()).toBeLessThanOrEqual(100); //Espero que el número random que me genera la función getRandom sea menor o igual que 100.
+    });
+
+    describe("compares the random number with the input number", function () {
+        beforeEach(function () {
+            document.getElementById('randNumberInput').value = 50; //Quiero comprobar que la comparación funciona. Para ello me creo un número aleatorio constante con el que voy a comprobar cada caso.
         });
-    });
 
-    describe("get input number", function () {
-        it("should be a number", function () {
-            document.getElementById('randNumberInput').value = 50;
-            expect(parseInt(getInputNumber())).toEqual(jasmine.any(Number));
+        it("should render the number is bigger", function () {
+            compareNumbers(100); //le digo que el random number es 100, que es mayor que el input number
+            expect(document.getElementById('result').innerHTML).toEqual("The random is bigger");
         });
-    });
 
-    describe("compare a number", function () {
-        it("compare smaller", function () {
-            window.getRandom = function () {
-                return 80;
-            }
-            document.getElementById('randNumberInput').value = 82;
-            console.log = jasmine.createSpy();
-            compareNumbers();
-            expect(console.log).toHaveBeenCalledWith("The random is smaller");
+        it("should render the number is smaller", function () {
+            compareNumbers(20); //le digo que el random number es 20, que es menor que el input number
+            expect(document.getElementById('result').innerHTML).toEqual("The random is smaller");
         });
-    });
 
-    describe("compare string", function () {
-        it("compare number with string", function () {
-            window.getRandom = function () {
-                return 80;
-            }
-            document.getElementById('randNumberInput').value = 'hola';
-            console.log = jasmine.createSpy();
-            compareNumbers();
-            expect(console.log).toHaveBeenCalledWith("Text is not allowed. Try a number");
+        it("should render you win", function () {
+            compareNumbers(50); //le digo que el random number es 50, que es el input number
+            expect(document.getElementById('result').innerHTML).toEqual("YOU WIN!!!");
         });
-    });
 
+    })
 });

@@ -10,7 +10,7 @@ h1 {
   color: #888888;
   font-size: 40px;
   letter-spacing: 2px;
-  text-align: right;
+  text-align: center;
   text-shadow: 0px 0px 1px rgba(111, 111, 111, 1);
 }
 
@@ -29,4 +29,8 @@ h1 {
 .button:hover {
   background-color: #888888;
   box-shadow: 0px 0px 1px 1px rgb(68, 68, 67);
+}
+
+#result {
+  margin-top: 20px;
 }
