@@ -5,7 +5,10 @@ function compareNumbers() {
   const inputNumber = parseInt(getInputNumber());
   console.log(randNumber);
   console.log(inputNumber);
-  if (randNumber > inputNumber) {
+  if (isNaN(inputNumber)) {
+    error();
+  }
+  else if (randNumber > inputNumber) {
     bigger();
   }
   else if (randNumber < inputNumber) {
@@ -25,6 +28,10 @@ function getInputNumber() {
   return document.getElementById('randNumberInput').value;
 }
 
+function error() {
+  console.log("Text is not allowed. Try a number");
+}
+
 function bigger() {
   console.log("The random is bigger");
 }
@@ -40,10 +47,6 @@ function win() {
 function start() {
   var buttons = document.getElementsByClassName("button");
   buttons[0].addEventListener("click", compareNumbers);
-};
+}
 
-(function (x) {
-  return function (y) {
-    return x
-  }
-})(1)(2);
+
