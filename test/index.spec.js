@@ -7,11 +7,11 @@
 //     beforeEach(function() {
 //       random = getRandom();
 //     });
-//     xit('shoud return a number', function() {
+//     it('shoud return a number', function() {
 //       expect(random).toEqual(jasmine.any(Number));
 //       // expect(typeof random).toBe('number');
 //     });
-//     xit('should be an integer', function() {
+//     it('should be an integer', function() {
 //       expect(Math.ceil(random)).toBe(Math.floor(random));
 //     });
 //     it('should be a number between 1 and 100', function() {
@@ -85,8 +85,26 @@ describe('the random number guess game', function(){
   });
 });
 
-// describe('', function(){
-//   it('' ,function(){
-      
-//   });
-// });
+describe('compare', function(){
+  beforeEach(function (){
+    var value = document.getElementById('randNumberInput').value = 30;    
+  });
+  it('compare the number when is bigger' ,function(){
+      var instructions = document.getElementById('result');
+      var randomNumber = 40;
+      compareNumbers(randomNumber);
+      expect(instructions.innerHTML).toEqual("The random is bigger");
+  });
+  it('compare the number when is smaller', function(){
+      var instructions = document.getElementById('result');
+      var randomNumber = 10;
+      compareNumbers(randomNumber);
+      expect(instructions.innerHTML).toEqual("The random is smaller");
+  });
+  it('when the number is equal', function(){
+    var instructions = document.getElementById('result');
+    var randomNumber = 30;
+    compareNumbers(randomNumber);
+    expect(instructions.innerHTML).toEqual("YOU WIN!!!")
+  });
+});
