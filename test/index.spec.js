@@ -1,3 +1,31 @@
+describe('the random number guess game', function(){
+    var app;
+
+    beforeEach(function(){
+        app = application();
+    });
+
+    it('compares numbers', function(){
+        expect(app.compareNumbers(10, 20)).toEqual(app.smaller());
+        expect(app.compareNumbers(20, 10)).toEqual(app.bigger());
+        expect(app.compareNumbers(10, 10)).toEqual(app.win());
+    });
+    it('validates that input numbers are correct', function(){
+        expect(app.compareNumbers(10, 'abcd')).toEqual(app.error());
+    });
+});
+describe('creat a random number', function(){
+    // beforeEach(function(){
+    //     var randomNumber;
+    //     app = application();
+    // });
+    it('the number is between 1 and 100', function(){
+        
+        randomNumber = getRandom();
+        expect(randomNumber).toBeGreatThan(100);
+    });
+});
+
 // describe('application', function() {
 //   beforeEach(function() {
 //     start();
@@ -55,56 +83,56 @@
 //   });
 // });
 
-describe('the random number guess game', function(){
-  beforeEach(function(){
-      document.getElementById('result').innerHTML = '';
-  });
+// describe('the random number guess game', function(){
+//   beforeEach(function(){
+//       document.getElementById('result').innerHTML = '';
+//   });
 
-  it('reads from the GUI and sets the result', function(){
-      start();
-      expect(document.getElementById('result').innerHTML).toEqual("");
-      document.getElementById('randNumberInput').value = 100;
+//   it('reads from the GUI and sets the result', function(){
+//       start();
+//       expect(document.getElementById('result').innerHTML).toEqual("");
+//       document.getElementById('randNumberInput').value = 100;
 
-      document.getElementById('compare-numbers-button').click();
+//       document.getElementById('compare-numbers-button').click();
 
-      expect(document.getElementById('result').innerHTML).not.toEqual("");
-  });
+//       expect(document.getElementById('result').innerHTML).not.toEqual("");
+//   });
 
-  it('generates a random number', function(){
-     expect(getRandom()).toBeGreaterThanOrEqual(1);
-     expect(getRandom()).toBeLessThanOrEqual(100);
-  });
+//   it('generates a random number', function(){
+//      expect(getRandom()).toBeGreaterThanOrEqual(1);
+//      expect(getRandom()).toBeLessThanOrEqual(100);
+//   });
 
-  it('compares number introduced by the user with a random', function(){
-      document.getElementById('randNumberInput').value = 20;
+//   it('compares number introduced by the user with a random', function(){
+//       document.getElementById('randNumberInput').value = 20;
 
-      compareNumbers(40);
+//       compareNumbers(40);
 
-      expect(document.getElementById('result').innerHTML)
-          .toEqual(bigger());
-  });
-});
+//       expect(document.getElementById('result').innerHTML)
+//           .toEqual(bigger());
+//   });
+// });
 
-describe('compare', function(){
-  beforeEach(function (){
-    var value = document.getElementById('randNumberInput').value = 30;    
-  });
-  it('compare the number when is bigger' ,function(){
-      var instructions = document.getElementById('result');
-      var randomNumber = 40;
-      compareNumbers(randomNumber);
-      expect(instructions.innerHTML).toEqual("The random is bigger");
-  });
-  it('compare the number when is smaller', function(){
-      var instructions = document.getElementById('result');
-      var randomNumber = 10;
-      compareNumbers(randomNumber);
-      expect(instructions.innerHTML).toEqual("The random is smaller");
-  });
-  it('when the number is equal', function(){
-    var instructions = document.getElementById('result');
-    var randomNumber = 30;
-    compareNumbers(randomNumber);
-    expect(instructions.innerHTML).toEqual("YOU WIN!!!")
-  });
-});
+// describe('compare', function(){
+//   beforeEach(function (){
+//     var value = document.getElementById('randNumberInput').value = 30;    
+//   });
+//   it('compare the number when is bigger' ,function(){
+//       var instructions = document.getElementById('result');
+//       var randomNumber = 40;
+//       compareNumbers(randomNumber);
+//       expect(instructions.innerHTML).toEqual("The random is bigger");
+//   });
+//   it('compare the number when is smaller', function(){
+//       var instructions = document.getElementById('result');
+//       var randomNumber = 10;
+//       compareNumbers(randomNumber);
+//       expect(instructions.innerHTML).toEqual("The random is smaller");
+//   });
+//   it('when the number is equal', function(){
+//     var instructions = document.getElementById('result');
+//     var randomNumber = 30;
+//     compareNumbers(randomNumber);
+//     expect(instructions.innerHTML).toEqual("YOU WIN!!!")
+//   });
+// });
