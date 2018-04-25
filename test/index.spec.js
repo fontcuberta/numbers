@@ -1,44 +1,31 @@
-describe('the random number guess game', function () {
-  beforeEach(function () {
-    start();
-    document.getElementById('result').innerHTML = '';
+describe('random number guess name', function () {
+  describe('compare the number function', function () {
+    it('shows that the random number is bigger', function () {
+      expect(app.compareNumbers(20, 10)).toEqual(app.bigger())
+    });
+    it('shows that the random number is smaller', function () {
+      expect(app.compareNumbers(10, 20)).toEqual(app.smaller())
+    });
+    it('shows that the random number is equal to input', function () {
+      expect(app.compareNumbers(10, 10)).toEqual(app.win())
+    });
   });
 
-  it('Shows the feedback in page', function () {
-    expect(document.getElementById('result').innerHTML).toEqual("");
-    //de entrada es vacío el resultados
-    document.getElementById('randNumberInput').value = 100;
-    //fakeamos el input a 100
-    document.getElementById('compare-numbers-button').click();
-    //cuando usuario clicka
-    expect(document.getElementById('result').innerHTML).not.toEqual("");
-    //esperamos que el valor del resultado no sea vacío, ya que se ha introducido el input
+  it('shows error when input is NaN', function () {
+    expect(app.compareNumbers(20, )).toEqual(app.error())
   });
 
-  it('generates a random number', function () {
-    expect(getRandom()).toBeGreaterThanOrEqual(1);
-    expect(getRandom()).toBeLessThanOrEqual(100);
+
+  it('creates a random number between 1 and 100', function () {
+    expect(app.getRandom()).toBeGreaterThanOrEqual(1);
+    expect(app.getRandom()).toBeLessThanOrEqual(100)
   });
 
-  describe('Display the comparison between the input and the random', function () {
-    it('The input is not a number', function () {
-      document.getElementById('randNumberInput').value = 'k';
-      compareNumbers(40);
-      expect(document.getElementById('result').innerHTML).toEqual(introduceNumber())
-    });
-    it('Shows that the randomnumber is bigger', function () {
-      document.getElementById('randNumberInput').value = 20;
-      compareNumbers(40);
-      //function compareNumbers(randNumber) 
-      expect(document.getElementById('result').innerHTML)
-        .toEqual(bigger());
-    });
-    it('Shows that the randomnumber is smaller', function () {
-      document.getElementById('randNumberInput').value = 60;
-      compareNumbers(40);
-      //function compareNumbers(randNumber) 
-      expect(document.getElementById('result').innerHTML)
-        .toEqual(smaller());
-    });
+  it('is shows the message in the to user', function () {
+    app.start()
+    document.getElementById('randNumberInput').value = 20
+    document.getElementById("compare-numbers-button").click()
+    var result = document.querySelector('#result').innerHTML;
+    expect(result).toEqual(app.bigger())
   });
 });

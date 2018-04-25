@@ -1,50 +1,66 @@
-function compareNumbers(randNumber) {
-  const inputNumber = getInputNumber();
-  if (randNumber > inputNumber) {
-    setResult(bigger());
+var app = (function getApplication() {
+  function compareNumbers(randomNumber, userSelectedNumber) {
+    if (isNaN(Number(userSelectedNumber))) {
+      return error();
+    }
+    if (randomNumber > userSelectedNumber) {
+      return bigger();
+    }
+    else if (randomNumber < userSelectedNumber) {
+      return smaller();
+    }
+    else {
+      return win();
+    }
   }
-  else if (randNumber < inputNumber) {
-    setResult(smaller());
+
+  function getRandom() {
+    return (Math.floor(Math.random() * (100 - 1)) + 1);
   }
-  else if (randNumber === inputNumber) {
-    setResult(win());
-  } else {
-    setResult(introduceNumber())
+
+  function getUserSelectedNumber() {
+    return Number(document.getElementById('randNumberInput').value);
   }
-}
 
-function getRandom(event) {
-  return (Math.floor(Math.random() * (100 - 1)) + 1);
-}
+  function setResult(result) {
+    document.getElementById('result').innerHTML = result;
+  }
 
-function getInputNumber() {
-  return Number(document.getElementById('randNumberInput').value);
-}
+  function error() {
+    return "Please introduce an integer";
+  }
+  function bigger() {
+    return "The random is bigger";
+  }
 
-function setResult(result) {
-  document.getElementById('result').innerHTML = result;
-}
+  function smaller() {
+    return "The random is smaller";
+  }
 
-function bigger() {
-  return "The random is bigger";
-}
+  function win() {
+    return "YOU WIN!!!";
+  }
 
-function smaller() {
-  return "The random is smaller";
-}
+  var randomNumber;
 
-function win() {
-  return "YOU WIN!!!";
-}
+  function onClick() {
+    setResult(compareNumbers(randomNumber, getUserSelectedNumber()));
+  }
 
-function introduceNumber() {
-  return "Please introduce a number";
-}
+  function start() {
+    randomNumber = getRandom();
+    var comparisonTrigger = document.getElementById("compare-numbers-button");
+    comparisonTrigger.addEventListener("click", onClick);
+  }
 
-function start() {
-  var randomNumber = getRandom();
-  var comparisonTrigger = document.getElementById("compare-numbers-button");
-  comparisonTrigger.addEventListener("click", function () {
-    compareNumbers(randomNumber);
-  });
-}
+  return {
+    compareNumbers: compareNumbers,
+    start: start,
+    error: error,
+    smaller: smaller,
+    bigger: bigger,
+    win: win,
+    getRandom: getRandom
+  }
+})()
+
