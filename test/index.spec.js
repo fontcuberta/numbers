@@ -14,17 +14,17 @@ describe('the random number guess game', function(){
         expect(app.compareNumbers(10, 'abcd')).toEqual(app.error());
     });
 });
-describe('creat a random number', function(){
-    // beforeEach(function(){
-    //     var randomNumber;
-    //     app = application();
-    // });
-    it('the number is between 1 and 100', function(){
+// describe('creat a random number', function(){
+//     // beforeEach(function(){
+//     //     var randomNumber;
+//     //     app = application();
+//     // });
+//     it('the number is between 1 and 100', function(){
         
-        randomNumber = getRandom();
-        expect(randomNumber).toBeGreatThan(100);
-    });
-});
+//         randomNumber = getRandom();
+        
+//     });
+// });
 
 // describe('application', function() {
 //   beforeEach(function() {
