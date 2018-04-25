@@ -1,4 +1,17 @@
 describe('application random number', function () {
+  //definimos las variables que en nuestro js llegan como parámetros
+  var randomize, randomNumber;
+
+  beforeEach(function (){
+    randomNumber = 101;
+    randomize = function (){ return randomNumber; };
+
+  });
+  xit('should be the random number a number between 1 and 100', function () {
+    expect(app.randomizeDefault()).toBeGreaterThanOrEqual(1);
+    expect(app.randomizeDefault()).toBeLessThanOrEqual(100);
+  });
+
   describe('compares numbers', function(){
     it('compares if random number is smaller than input one', function(){
       expect(app.compareNumbers(10, 20)).toEqual(app.smaller());
@@ -19,77 +32,23 @@ describe('application random number', function () {
       expect(app.compareNumbers(10, 101)).toEqual(app.error());
     });
   });
+  it('validates if start works with the UI', function () {
+    app.start(randomNumber);
+    simulateThatUserInsertsValue(2);
+    doClick();
+    expect(giveResult()).toEqual(app.bigger());
+  });
 
+  function simulateThatUserInsertsValue(val) {
+    document.getElementById('rand-number-input').value = val;
+  }
+
+  function doClick() {
+    document.getElementById('compare-numbers-btn').click();
+  }
+
+  function giveResult() {
+    return document.getElementById('result').innerHTML;
+  }
   
 });
-
-// describe('application', function() {
-//   beforeEach(function() {
-//     start();
-//   });
-//   describe('get random', function() {
-  
-//     beforeEach(function() {
-//       random = getRandom();
-      
-//     });
-//     xit('shoud return a number', function() {
-//       expect(random).toEqual(jasmine.any(Number));
-//       // expect(typeof random).toBe('number');
-//     });
-//     xit('should be an integer', function() {
-//       expect(Math.ceil(random)).toBe(Math.floor(random));
-//     });
-//     it('should be a number between 1 and 100', function() {
-//       expect(random).toBeGreaterThanOrEqual(1);
-//       expect(random).toBeLessThanOrEqual(100);
-//     });
-    
-//   });
-//   describe('compare numbers', function() {
-//     it('compares that the number introduced by the user is bigger than the random one', function () {
-//       document.getElementById('rand-number-input').value = 20;
-//       compareNumbers(40);
-//       expect(document.getElementById('result').innerHTML).toEqual(bigger());
-//     });
-//     it('compares that the number introduced by the user is smaller than the random one', function () {
-//       document.getElementById('rand-number-input').value = 50;
-//       compareNumbers(40);
-//       expect(document.getElementById('result').innerHTML).toEqual(smaller());
-//     });
-//     it('compares that the number introduced by the user is equal than the random one', function () {
-//       document.getElementById('rand-number-input').value = 40;
-//       compareNumbers(40);
-//       expect(document.getElementById('result').innerHTML).toEqual(win());
-//     });
-//   });
-//   describe('check input', function() {
-//     it('check if the number introduced by the user is empty', function () {
-//       document.getElementById('rand-number-input').value = 0;
-//       compareNumbers(40);
-//       expect(document.getElementById('result').innerHTML).toEqual(error());
-//     });
-//     it('check if the number introduced by the user is negative', function () {
-//       // document.getElementById('rand-number-input').value = 0;
-//       // compareNumbers(40);
-//       // expect(document.getElementById('result').innerHTML).toEqual(error());
-//     });
-//     xit ('could the input contain a number', function(){
-//       document.getElementById('rand-number-input').value = 44;
-//       expect(parseInt(getInputNumber())).toEqual(jasmine.any(Number));
-//     });
-//   });
-
-//   xdescribe('compare a number', function(){
-//     it('compare smaller', function(){
-//      window.getRandom = function() {
-//        return 80;
-//      }
-//      document.getElementById('rand-number-input').value = 82;
-//      console.log = jasmine.createSpy();
-//      compareNumbers();
-//      expect(console.log).toHaveBeenCalledWith("The random is smaller");
-//     });
-//   });
-
-// });
