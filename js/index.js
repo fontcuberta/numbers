@@ -1,5 +1,15 @@
-var app = (function getApplication (){
-  var randomNumber;
+var numbers = {
+  randomize: function () {
+    return (Math.floor(Math.random() * (100 - 1)) + 1);
+  }
+};
+
+var app = (function getApplication (randomize){
+  var randomFunction = randomize;
+  if (typeof(randomize) != 'function') {
+    randomFunction = randomizeDefault;
+  }
+
   function compareNumbers (randomNumber, userSelectedNumber) {
 
     console.log(randomNumber);
@@ -21,7 +31,7 @@ var app = (function getApplication (){
     }
   }
 
-  function getRandom (event) {
+  function randomizeDefault () {
     return (Math.floor(Math.random() * (100 - 1)) + 1);
   }
 
@@ -46,16 +56,15 @@ var app = (function getApplication (){
   function error () {
     return 'Error. Please, introduce a number between 1 and 100';  
   }
-  function onClick() {
-    setResult(compareNumbers(randomNumber, getUserSelectedNumber()));
-  }
-  function start() {
-    randomNumber = getRandom();
-    var compareNumbersButton = document.getElementById("compare-numbers-btn");
-    compareNumbersButton.addEventListener("click", onClick);
-  }
-  // start();
 
+  function start() {
+    var randomNumber = randomFunction();
+    var compareNumbersButton = document.getElementById("compare-numbers-btn");
+    compareNumbersButton.addEventListener("click", function () {
+      setResult(compareNumbers(randomNumber, getUserSelectedNumber()));
+    });
+  }
+ 
   return {
     compareNumbers: compareNumbers,
     start: start,
@@ -65,5 +74,3 @@ var app = (function getApplication (){
     win: win
   };
 })();
-
-// getApplication().start();
