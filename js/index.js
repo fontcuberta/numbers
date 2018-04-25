@@ -1,55 +1,69 @@
-function compareNumbers (randNumber) {
+var app = (function getApplication (){
+  var randomNumber;
+  function compareNumbers (randomNumber, userSelectedNumber) {
 
-  var inputNumber = getInputNumber();
-  console.log(randNumber);
-  console.log(inputNumber);
-  if (inputNumber < 1 || inputNumber > 100 || inputNumber === 0) {
-    setResult(error());
+    console.log(randomNumber);
+
+    if (userSelectedNumber < 1 || userSelectedNumber > 100 || userSelectedNumber === 0) {
+      return error();
+    }
+    else if (randomNumber < userSelectedNumber) {
+      return smaller();
+    }
+    else if (randomNumber === userSelectedNumber){
+      return win();
+    }
+    else if (randomNumber > userSelectedNumber) {
+      return bigger();
+    }
+    else if (isNaN(Number(userSelectedNumber))){
+      return error();
+    }
   }
-  else if (randNumber < inputNumber) {
-    setResult(smaller());
+
+  function getRandom (event) {
+    return (Math.floor(Math.random() * (100 - 1)) + 1);
   }
-  else if (randNumber === inputNumber){
-    setResult(win());
+
+  function getUserSelectedNumber () {
+    return Number(document.getElementById('rand-number-input').value);
   }
-  else if (randNumber > inputNumber) {
-    setResult(bigger());
+  function setResult (result) {
+    document.getElementById('result').innerHTML = result;
   }
-  else {
-    setResult(error());
+  function bigger () {
+    return "The random is bigger";
   }
-}
 
-function getRandom (event) {
-  return (Math.floor(Math.random() * (100 - 1)) + 1);
-}
+  function smaller () {
+    return "The random is smaller";
+  }
 
-function getInputNumber () {
-  return Number(document.getElementById('rand-number-input').value);
-}
-function setResult (result) {
-  document.getElementById('result').innerHTML = result;
-}
-function bigger () {
-  return "The random is bigger";
-}
+  function win () {
+    return "YOU WIN!!!";
+  }
 
-function smaller () {
-  return "The random is smaller";
-}
+  function error () {
+    return 'Error. Please, introduce a number between 1 and 100';  
+  }
+  function onClick() {
+    setResult(compareNumbers(randomNumber, getUserSelectedNumber()));
+  }
+  function start() {
+    randomNumber = getRandom();
+    var compareNumbersButton = document.getElementById("compare-numbers-btn");
+    compareNumbersButton.addEventListener("click", onClick);
+  }
+  // start();
 
-function win () {
-  return "YOU WIN!!!";
-}
+  return {
+    compareNumbers: compareNumbers,
+    start: start,
+    error: error,
+    smaller: smaller,
+    bigger: bigger,
+    win: win
+  };
+})();
 
-function error () {
-  return 'Error. Please, introduce a number between 1 and 100';  
-}
-
-function start() {
-  var randNumber = getRandom();
-  var compareNumbersButton = document.getElementById("compare-numbers-btn");
-  compareNumbersButton.addEventListener("click", function () {
-    compareNumbers(randNumber);
-  });
-}
+// getApplication().start();
