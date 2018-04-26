@@ -71,6 +71,7 @@ var app = (function getApplication (randomize){
     error: error,
     smaller: smaller,
     bigger: bigger,
-    win: win
+    win: win,
+    randomizeDefault: randomizeDefault
   };
 })();

@@ -7,7 +7,7 @@ describe('application random number', function () {
     randomize = function (){ return randomNumber; };
 
   });
-  xit('should be the random number a number between 1 and 100', function () {
+  it('should be the random number a number between 1 and 100', function () {
     expect(app.randomizeDefault()).toBeGreaterThanOrEqual(1);
     expect(app.randomizeDefault()).toBeLessThanOrEqual(100);
   });
